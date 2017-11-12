@@ -52,53 +52,65 @@ How to test the application
  
 	a) Valid requests
 	
-	GET http://localhost:8585/api/v1/contacts
-	
-	GET http://localhost:8585/api/v1/contacts?search=city:NYC
-	
-	GET http://localhost:8585/api/v1/contacts?search=state:NY
-	
-	GET http://localhost:8585/api/v1/contacts?search=state:OH
+		GET http://localhost:8585/api/v1/contacts
+		
+		GET http://localhost:8585/api/v1/contacts?search=city:NYC
+		
+		GET http://localhost:8585/api/v1/contacts?search=state:NY
+		
+		GET http://localhost:8585/api/v1/contacts?search=state:OH
 	
 	b) Invalid requests, invalid values
 	
-	GET http://localhost:8585/api/v1/contacts?search=city:
-	
-	GET http://localhost:8585/api/v1/contacts?search=state:
+		GET http://localhost:8585/api/v1/contacts?search=city:
+		
+		GET http://localhost:8585/api/v1/contacts?search=state:
 	
 	c) invalid parameter
 	
-	GET http://localhost:8686/api/v1/contacts?search=phonenumber:
+		GET http://localhost:8686/api/v1/contacts?search=phonenumber:
 
 
  2. search by email/phone number using GET Requests
 
 	a) valid requests
-	GET http://localhost:8585/api/v1/contact/brian@noname.org
-	GET http://localhost:8585/api/v1/contact/111-222-4444
+	
+		GET http://localhost:8585/api/v1/contact/brian@noname.org
+		
+		GET http://localhost:8585/api/v1/contact/111-222-4444
 	
 	c) invalid requests like missing @ character from email
-	http://localhost:8686/api/v1/contact/briannoname.org
+	
+		GET http://localhost:8686/api/v1/contact/briannoname.org
 	
 	d) invalid phone number, missing - in first part of phone
-	http://localhost:8585/api/v1/contact/111222-3333
+	
+		GET http://localhost:8585/api/v1/contact/111222-3333
 	
 3. delete a contact
+
 	a) delete using id of contact which is retrieved using other GET queries
-	DELETE http://localhost:8585/api/v1/contact/1
+	
+		GET DELETE http://localhost:8585/api/v1/contact/1
 
 4. create a contact
 	
 	a) valid requests
-	 POST http://localhost:8585/api/v1/contact (with contact information in below json format)
-	{"name":"Brian","email":"brian@noname.org","company":"companyC","profileImage":"~/profile/brian/image","birthDate":"2000-07-27","workPhoneNumber":"111-222-4446","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cleveland","state":"OH","country":"USA","zipcode":"53749"}
+	
+		GET POST http://localhost:8585/api/v1/contact (with contact information in below json format)
+		
+		{"name":"Brian","email":"brian@noname.org","company":"companyC","profileImage":"~/profile/brian/image","birthDate":"2000-07-27","workPhoneNumber":"111-222-4446","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cleveland","state":"OH","country":"USA","zipcode":"53749"}
 	
 	b) invalid requests
+	
 	   try passing invalid email/personal phone number/date of birth in passed json
 	
 5. update a contact 
+
 	a) valid request
+
 	PUT http://localhost:8585/api/v1/contact/1 (with contact information in below json format)
+
 	{"name":"Brian Maher","email":"brian@noname.org","company":"companyD","profileImage":"~/profile/brian/image","birthDate":"2000-07-28","workPhoneNumber":"111-222-4445","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cincinatti","state":"OH","country":"USA","zipcode":"78297"}
 
 
