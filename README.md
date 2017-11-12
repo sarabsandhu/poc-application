@@ -4,13 +4,13 @@ POC application
 How to run the app
 ---------------------------------------------------------------------------------------------------------
 
-//run on default port 8585
+1. run on default port 8585
 java -jar solstice-poc-application-0.0.1.jar
 
-//run on different port like 8686
+2. run on different port like 8686
 java -jar target/solstice-poc-application-0.0.1.jar --server.port=8686
 
-//specify log file name to something different like solstice.log.
+3. specify log file name to something different like solstice.log.
 java -jar target/solstice-poc-application-0.0.1.jar --server.port=8686 --logging.file=solstice.log
 
 
@@ -22,15 +22,7 @@ Notes
 2. Application log will stored in same directory where application was started using terminal/command prompt.
 3. Application log will at debug level by default.
 4. Application log name will be solstice-poc-app.log.
-5. Contact table will be created by default on application startup and populated with sample data below
-
-(NAME     ,EMAIL               ,COMPANY    ,PROFILE_IMAGE            ,BIRTH_DATE   ,WORK_PHONE_NUMBER ,PERSONAL_PHONE_NUMBER ,ADDRESS_LINE1   ,ADDRESS_LINE2 ,CITY       ,STATE ,COUNTRY ,ZIPCODE)
-(John   ,john@noname.org   ,companyA ,~/profile/john/image   ,2000-07-29 ,111-222-4444    ,111-333-5555        ,123 state st  ,APT 114     ,Chicago  ,IL  ,USA   ,60607)
-(Mike   ,mike@noname.org   ,companyB ,~/profile/mike/image   ,2000-07-28 ,111-222-4445    ,111-333-5556        ,123 main st   ,APT 115     ,NYC      ,NY  ,USA   ,29483)
-(Brian  ,brian@noname.org  ,companyC ,~/profile/brian/image  ,2000-07-27 ,111-222-4446    ,111-333-5557        ,1234 clark st ,APT 116     ,cleveland,OH  ,USA   ,53749)
-(Patrick,patrick@noname.org,companyD ,~/profile/patrick/image,2000-07-26 ,111-222-4447    ,111-333-5558        ,189 sun st    ,APT 211     ,cleveland,OH  ,USA   ,53749)
-(Mark   ,mark@noname.org   ,companyE ,~/profile/mark/image   ,2000-07-25 ,111-222-4448    ,111-333-5559        ,18 dearborn st,APT 212     ,NYC      ,NY  ,USA   ,29483)
-(Harry  ,harry@noname.org  ,companyF ,~/profile/harry/image  ,2000-07-24 ,111-222-4449    ,111-333-5554        ,123 wine st   ,APT 213     ,Chicago  ,IL  ,USA   ,60607)
+5. Contact table will be created by default on application startup and populated with sample data (given at end)
 
 
 
@@ -56,50 +48,59 @@ How to test the application
 
  You can use curl on unix terminal to make REST calls for below urls. You can use any other rest client. 
  
- //1. search by city or state
-	 //Valid requesits
+ 1. search by city or state
+	a) Valid requests
 	GET http://localhost:8585/api/v1/contacts
 	GET http://localhost:8585/api/v1/contacts?search=city:NYC
 	GET http://localhost:8585/api/v1/contacts?search=state:NY
 	GET http://localhost:8585/api/v1/contacts?search=state:OH
 	
-	//Invalid requests
-	//invalid values
+	b) Invalid requests, invalid values
+	
 	GET http://localhost:8585/api/v1/contacts?search=city:
 	GET http://localhost:8585/api/v1/contacts?search=state:
 	
-	//invalid parameter
+	c) invalid parameter
 	GET http://localhost:8686/api/v1/contacts?search=phonenumber:
 
 
-//2. search by email/phone number using GET Requests
+ 2. search by email/phone number using GET Requests
 
-	//valid requests
+	a) valid requests
 	GET http://localhost:8585/api/v1/contact/brian@noname.org
 	GET http://localhost:8585/api/v1/contact/111-222-4444
 	
-	//invalid requests
-	//missing @ character from email
+	c) invalid requests like missing @ character from email
 	http://localhost:8686/api/v1/contact/briannoname.org
 	
-	//invalid phone number, missing - in first part
+	d) invalid phone number, missing - in first part of phone
 	http://localhost:8585/api/v1/contact/111222-3333
 	
-//3. delete a contact
-	// delete using id of contact which is retrieved using other GET queries
+3. delete a contact
+	a) delete using id of contact which is retrieved using other GET queries
 	DELETE http://localhost:8585/api/v1/contact/1
 
-//4. create a contact
+4. create a contact
 	
-	//valid requests
-	POST http://localhost:8585/api/v1/contact (with contact information in below json format)
+	a) valid requests
+	 POST http://localhost:8585/api/v1/contact (with contact information in below json format)
 	{"name":"Brian","email":"brian@noname.org","company":"companyC","profileImage":"~/profile/brian/image","birthDate":"2000-07-27","workPhoneNumber":"111-222-4446","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cleveland","state":"OH","country":"USA","zipcode":"53749"}
 	
-	//invalid requests
-	try passing invalid email/personal phone number/date of birth in passed json
+	b) invalid requests
+	   try passing invalid email/personal phone number/date of birth in passed json
 	
-//5. update a contact 
-	//valid request
+5. update a contact 
+	a) valid request
 	PUT http://localhost:8585/api/v1/contact/1 (with contact information in below json format)
 	{"name":"Brian Maher","email":"brian@noname.org","company":"companyD","profileImage":"~/profile/brian/image","birthDate":"2000-07-28","workPhoneNumber":"111-222-4445","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cincinatti","state":"OH","country":"USA","zipcode":"78297"}
 
+
+6. Sample Data initialized at startup
+
+(NAME     ,EMAIL               ,COMPANY    ,PROFILE_IMAGE            ,BIRTH_DATE   ,WORK_PHONE_NUMBER ,PERSONAL_PHONE_NUMBER ,ADDRESS_LINE1   ,ADDRESS_LINE2 ,CITY       ,STATE ,COUNTRY ,ZIPCODE)
+(John   ,john@noname.org   ,companyA ,~/profile/john/image   ,2000-07-29 ,111-222-4444    ,111-333-5555        ,123 state st  ,APT 114     ,Chicago  ,IL  ,USA   ,60607)
+(Mike   ,mike@noname.org   ,companyB ,~/profile/mike/image   ,2000-07-28 ,111-222-4445    ,111-333-5556        ,123 main st   ,APT 115     ,NYC      ,NY  ,USA   ,29483)
+(Brian  ,brian@noname.org  ,companyC ,~/profile/brian/image  ,2000-07-27 ,111-222-4446    ,111-333-5557        ,1234 clark st ,APT 116     ,cleveland,OH  ,USA   ,53749)
+(Patrick,patrick@noname.org,companyD ,~/profile/patrick/image,2000-07-26 ,111-222-4447    ,111-333-5558        ,189 sun st    ,APT 211     ,cleveland,OH  ,USA   ,53749)
+(Mark   ,mark@noname.org   ,companyE ,~/profile/mark/image   ,2000-07-25 ,111-222-4448    ,111-333-5559        ,18 dearborn st,APT 212     ,NYC      ,NY  ,USA   ,29483)
+(Harry  ,harry@noname.org  ,companyF ,~/profile/harry/image  ,2000-07-24 ,111-222-4449    ,111-333-5554        ,123 wine st   ,APT 213     ,Chicago  ,IL  ,USA   ,60607)
