@@ -1,3 +1,5 @@
+# poc-application
+POC application
 
 How to run the app
 ---------------------------------------------------------------------------------------------------------
@@ -100,5 +102,4 @@ How to test the application
 	//valid request
 	PUT http://localhost:8585/api/v1/contact/1 (with contact information in below json format)
 	{"name":"Brian Maher","email":"brian@noname.org","company":"companyD","profileImage":"~/profile/brian/image","birthDate":"2000-07-28","workPhoneNumber":"111-222-4445","personalPhoneNumber":"111-333-5557","addressLine1":"1234 clark st","addressLine2":"APT 116","city":"cincinatti","state":"OH","country":"USA","zipcode":"78297"}
-
 
