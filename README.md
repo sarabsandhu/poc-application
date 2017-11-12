@@ -64,7 +64,7 @@ How to test the application
 
  You can use curl on unix terminal to make REST calls (GET,POST,PUT,DELETE) for below urls after application startup. You can also use any other rest client of your choice. I used Advanced REST client in chrome apps.
  
- 1. search by city or state
+ 1. search by city or state ( FYI city and state search values are case-sensitive. OH will work but oh will not work. )
  
 	a) Valid requests
 	
@@ -87,13 +87,13 @@ How to test the application
 		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contacts?search=phonenumber:
 
 
- 2. search by email/phone number using GET Requests
+ 2. search by email/phone number using GET Requests. Note. you can only search by personal phone number. DO NOT mix up work phone number with  personal phone number. it is not supported right now.
 
 	a) valid requests
 	
 		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/brian@noname.org
 		
-		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/111-222-4444
+		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/111-222-4444 
 	
 	c) invalid requests like missing @ character from email
 	
@@ -105,9 +105,9 @@ How to test the application
 	
 3. delete a contact (using HTTP DELETE method)
 
-	a) delete using id of contact which is retrieved using other GET queries
+	a) delete using email/personal phone number of contact (which is retrieved using other GET queries)
 	
-		DELETE http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1
+		DELETE http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/briannoname.org
 
 4. create a contact (using HTTP POST method)
 	
@@ -135,13 +135,13 @@ How to test the application
 	
 	b) invalid requests
 	
-	   try passing invalid email/personal phone number/date of birth in passed json. You should detailed error for each attribute.
+	   try passing invalid email/personal-phone-number/date-of-birth in input json. You should get detailed error for each attribute.
 	
 5. update a contact 
 
-	a) valid request (with contact information in body shown in below json format)
+	a) valid request (with contact information in body shown in below json format).
 
-		PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 
+		PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact
 	
 		(with contact information provided in body of POST request ( in json format))
 		

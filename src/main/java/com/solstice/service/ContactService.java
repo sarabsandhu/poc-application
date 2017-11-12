@@ -211,17 +211,15 @@ public class ContactService {
 	}
 
 	/*
-	 * update the contact with given id. Assuming that complete contact information
-	 * will be sent as part of update information (including Columns which are not
-	 * changing). Most of time UI contains all information and sends all attributes
+	 * update the contact with given Contact Information. Assuming that complete contact information
+	 * will be sent as part of update information (including attributes which are not
+	 * changed). Most of time UI contains all information and sends all attributes
 	 * (including changes). logic can be changed to receive only updated fields of
 	 * Contact and update changed attributes only.
 	 * 
-	 * @param id unique id attribute of contact
-	 * 
 	 * @param contact it contains update information.
 	 */
-	public Contact update(Long id, Contact contact) throws ContactException {
+	public Contact update(Contact contact) throws ContactException {
 
 		List<String> errorList = contactValidator.validate(contact);
 
@@ -231,8 +229,9 @@ public class ContactService {
 
 		} else {
 			
-			// find the current Contact by provided id
-			Contact currentContact = contactRepository.findOne(id);
+			// find the current Contact by provided email since we already validated contact information
+			// we have validated email already.
+			Contact currentContact = get(contact.getEmail());
 
 			// if current contact is null, inform user about non-existent contact
 			if (currentContact == null) {
@@ -255,10 +254,12 @@ public class ContactService {
 	/*
 	 * delete contact for given id
 	 */
-	public void delete(Long id) throws Exception {
-		// find contact by id
-		Contact currentContact = contactRepository.findOne(id);
+	public void delete(String emailOrPhoneNumber) throws Exception {
+		// find contact by email/phone number
+		Contact currentContact = get(emailOrPhoneNumber);
 		
+		//no need to check if currentContact found or not.
+		//get function takes care of throwing excption if contact not found
 		// issue delete command retrieved contact
 		contactRepository.delete(currentContact);
 	}

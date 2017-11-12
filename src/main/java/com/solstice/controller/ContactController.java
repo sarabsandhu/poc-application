@@ -79,17 +79,17 @@ public class ContactController {
 		return contact;
 	}
 
-	@RequestMapping(value = "contact/{id}", method = RequestMethod.PUT)
-	public Contact update(@PathVariable Long id, @RequestBody Contact contact) throws ContactException {
-		logger.info("update contact request received with id ", id);
-		logger.debug("New contact Info : ", contact);
-		return contactService.update(id, contact);
+	@RequestMapping(value = "contact", method = RequestMethod.PUT)
+	public Contact update(@RequestBody Contact contact) throws ContactException {
+		logger.info("update contact request received with email", contact.getEmail());
+		logger.debug("Updated contact Info : ", contact);
+		return contactService.update(contact);
 	}
 
-	@RequestMapping(value = "contact/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable Long id) throws Exception{
-		logger.info("delete contact request received with id ", id);
-		contactService.delete(id);
+	@RequestMapping(value = "contact/{emailOrPhoneNumber:.+}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String emailOrPhoneNumber) throws Exception{
+		logger.info("delete contact request received with email/phone number ", emailOrPhoneNumber);
+		contactService.delete(emailOrPhoneNumber);
 	}
 
 	/*
