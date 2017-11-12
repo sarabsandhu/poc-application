@@ -10,11 +10,11 @@ How to run the app
 
 2. run on different port like 8686
 
-	java -jar target/solstice-poc-application-1.0.0.jar --server.port=8686
+	java -jar solstice-poc-application-1.0.0.jar --server.port=8686
 
 3. specify log file name to something different like solstice.log.
 	
-	java -jar target/solstice-poc-application-1.0.0.jar --server.port=8686 --logging.file=solstice.log
+	java -jar solstice-poc-application-1.0.0.jar --server.port=8686 --logging.file=solstice.log
 
 
 
