@@ -68,7 +68,7 @@ How to test the application
 	
 	c) invalid parameter
 	
-		GET http://<Your_IP_ADDRESS/localhost>:8686/api/v1/contacts?search=phonenumber:
+		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contacts?search=phonenumber:
 
 
  2. search by email/phone number using GET Requests
@@ -81,7 +81,7 @@ How to test the application
 	
 	c) invalid requests like missing @ character from email
 	
-		GET http://<Your_IP_ADDRESS/localhost>:8686/api/v1/contact/briannoname.org
+		GET http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/briannoname.org
 	
 	d) invalid phone number, missing - in first part of phone
 	
