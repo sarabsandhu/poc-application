@@ -1,7 +1,6 @@
 # poc-application
 POC application
 
-
 Description/Notes
 ---------------------------------------------------------------------------------------------------------
 
@@ -21,8 +20,7 @@ Description/Notes
 3. Application log will stored in same directory where application was started using terminal/command prompt.
 4. Application log will be at INFO level by default.
 5. Application log name will be solstice-poc-app.log by default.
-6. Contact table will be created by default on application startup and populated with sample data (provided at end).
-
+6. Contact table will be created by default on application startup using h2 database (http://www.h2database.com/html/main.html) and populated with sample data (provided at end).
 
 
 Schema/Sample Data Assumptions
@@ -41,7 +39,25 @@ Schema/Sample Data Assumptions
 6. Assuming that I don't need to implement security of API as it was not mentioned in assignment. Again simplifying 
    it to reduce scope of implementation.
    
+
+How to build the application
+---------------------------------------------------------------------------------------------------------
+
+Application is building spring boot/mvc and h2 database (http://www.h2database.com/html/main.html).
+ 
+You will need JDK 1.8, Maven and git installed to build the application. Make sure JAVA_HOME and MAVEN_HOME variables are set properly.
+Also all these tools are available on your PATH environment variable.
+
+1. Clone the application locally
+
+   git clone https://github.com/sarabsandhu/poc-application.git
    
+2. Change your directory to poc-application folder and clean and package goals of maven.
+
+	mvn clean package
+
+3. solstice-poc-application-1.0.0.jar will be available under target folder on build success from previous step.
+
 
 How to run the application
 ---------------------------------------------------------------------------------------------------------
