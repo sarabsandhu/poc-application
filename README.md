@@ -43,16 +43,15 @@ Schema/Sample Data Assumptions
 How to build the application
 ---------------------------------------------------------------------------------------------------------
 
-Application is building spring boot/mvc and h2 database (http://www.h2database.com/html/main.html).
+Application is built Spring Boot/MVC and h2 database (http://www.h2database.com/html/main.html).
  
-You will need JDK 1.8, Maven and git installed to build the application. Make sure JAVA_HOME and MAVEN_HOME variables are set properly.
-Also all these tools are available on your PATH environment variable.
+You will need JDK 1.8, Maven and git installed to build the application. Make sure JAVA_HOME and MAVEN_HOME environment variables are set properly. Make sure that these tools are available on your PATH environment variable.
 
-1. Clone the application locally
+1. Clone application repo locally
 
    git clone https://github.com/sarabsandhu/poc-application.git
    
-2. Change your directory to poc-application folder and clean and package goals of maven.
+2. Change your directory to poc-application folder and run below command. it will build application along side running your test cases.
 
 	mvn clean package
 
@@ -61,6 +60,8 @@ Also all these tools are available on your PATH environment variable.
 
 How to run the application
 ---------------------------------------------------------------------------------------------------------
+
+Note: you need JDK/JRE 1.8 on your PATH environment variable for this step.
 
 1. run on default port 8585
 
