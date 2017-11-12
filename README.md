@@ -107,7 +107,7 @@ How to test the application
 
 	a) delete using email/personal phone number of contact (which is retrieved using other GET queries)
 	
-		DELETE http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/briannoname.org
+		DELETE http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/brian@noname.org
 
 4. create a contact (using HTTP POST method)
 	
