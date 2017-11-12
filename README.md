@@ -124,9 +124,10 @@ How to test the application
 	
 5. update a contact 
 
-	a) valid request
+	a) valid request (with contact information in body shown in below json format)
 
-	PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 (with contact information in below json format)
+	PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 
+	
 	{  
 	   "name":"Brian Maher",
 	   "email":"brian@noname.org",
@@ -146,6 +147,7 @@ How to test the application
 
 6. Sample Data initialized at startup
 
+
 	{
 		"name": "John",
 		"email": "john@noname.org",
@@ -161,6 +163,7 @@ How to test the application
 		"country": "USA",
 		"zipcode": "60607"
 	},
+	
 	{
 		"name": "Mike",
 		"email": "mike@noname.org",
@@ -176,6 +179,7 @@ How to test the application
 		"country": "USA",
 		"zipcode": "29483"
 	},
+	
 	{
 		"name": "Brian",
 		"email": "brian@noname.org",
@@ -191,6 +195,7 @@ How to test the application
 		"country": "USA",
 		"zipcode": "53749"
 	},
+	
 	{
 		"name": "Patrick",
 		"email": "patrick@noname.org",
@@ -206,6 +211,7 @@ How to test the application
 		"country": "USA",
 		"zipcode": "53749"
 	},
+	
 	{
 
 		"name": "Mark",
@@ -222,6 +228,7 @@ How to test the application
 		"country": "USA",
 		"zipcode": "29483"
 	},
+	
 	{
 
 		"name": "Harry",
