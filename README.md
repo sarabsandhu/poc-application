@@ -1,6 +1,48 @@
 # poc-application
 POC application
 
+
+Description/Notes
+---------------------------------------------------------------------------------------------------------
+
+1. There will be two types of urls for app functionality (shown below). First URI implements GET,POST,PUT,DELETE to implement
+   single contact operations like retrieve, create, update and delete respectively. Second url will implement functionality
+   where we will be dealing with multiple contacts. This API only implements GET operation for second URL to retrieve list 
+   of contacts based on search criteria. Sample requests are provided in "How to test the application" section below.
+
+
+    a) http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact
+    
+
+    b) http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contacts
+    
+    
+2. Application will be running on port 8585.
+3. Application log will stored in same directory where application was started using terminal/command prompt.
+4. Application log will be at INFO level by default.
+5. Application log name will be solstice-poc-app.log by default.
+6. Contact table will be created by default on application startup and populated with sample data (provided at end).
+
+
+
+Schema/Sample Data Assumptions
+---------------------------------------------------------------------------------------------------------
+
+1. Phone numbers format will be 10-digit like 111-222-3333.
+2. Date of Birth will be stored in string format to simplify poc implementation.
+3. Date of Birth will be stored in ISO date format like 2000-05-29 (yyyy-mm-dd).
+3. Email/Personal phone number will be unique attributes for contact. You will be only able to search by email or personal phone number.
+   You will not be able to search a contact by work phone number as it is being assumed that two contacts can have same work phone number.
+   Functionality of API will need to be enhanced if you want to search by work phone number.
+4. Update contact api call will not update email/personal phone number attributes. These will be simply ignored if 
+   submitted with update operation. 
+5. It will be assumed that profile photo/image will be stored on persistent storage like s3 so table will only
+   store location of this profile photo (e.g. on s3). It will be a URI.
+6. Assuming that I don't need to implement security of API as it was not mentioned in assignment. Again simplifying 
+   it to reduce scope of implementation.
+   
+   
+
 How to run the application
 ---------------------------------------------------------------------------------------------------------
 
@@ -15,35 +57,6 @@ How to run the application
 3. run on different port like 8686 and specify log file name to something different like solstice.log.
 	
 	java -jar solstice-poc-application-1.0.0.jar  --DB_URL=jdbc:h2:~/solsticepoc --DB_USERNAME=sa --DB_PASSWORD --server.port=8686 --logging.file=solstice.log
-
-
-
-Notes
----------------------------------------------------------------------------------------------------------
-
-1. Application will be running on port 8585.
-2. Application log will stored in same directory where application was started using terminal/command prompt.
-3. Application log will be at INFO level by default.
-4. Application log name will be solstice-poc-app.log.
-5. Contact table will be created by default on application startup and populated with sample data (provided in end section)
-
-
-
-Schema/Sample Data Assumptions
----------------------------------------------------------------------------------------------------------
-
-1. Phone numbers format should be 10-digit like 111-222-3333.
-2. Date of Birth will be stored in string format to simplify poc implementation.
-3. Date of Birth will be stored in ISO date format like 2000-05-29 (yyyy-mm-dd).
-3. Email/Personal phone number will be unique attributes for contact. 
-4. update contact api call will not update email/personal phone number attributes. These will be simply ignored if 
-   submitted with update operation. 
-5. It will be assumed that profile photo/image will be stored on persistent storage like s3 so table will only
-   store location of this profile photo (e.g. on s3). It will be a URI.
-6. Assuming that I don't need to implement security of API as it was not mentioned in assignment. Again simplifying 
-   it to reduce scope of implementation.
-
-
 
 
 How to test the application 
@@ -100,7 +113,9 @@ How to test the application
 	
 	a) valid requests
 	
-	    POST http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact (with contact information in body(json format) like below)
+	    POST http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact 
+	    
+	    (with contact information provided in body of POST request ( in json format))
 		
 		{  
 		   "name":"Brian",
@@ -120,31 +135,33 @@ How to test the application
 	
 	b) invalid requests
 	
-	   try passing invalid email/personal phone number/date of birth in passed json
+	   try passing invalid email/personal phone number/date of birth in passed json. You should detailed error for each attribute.
 	
 5. update a contact 
 
 	a) valid request (with contact information in body shown in below json format)
 
-	PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 
+		PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 
 	
-	{  
-	
-		   "name":"Brian Maher",
-		   "email":"brian@noname.org",
-		   "company":"companyD",
-		   "profileImage":"~/profile/brian/image",
-		   "birthDate":"2000-07-28",
-		   "workPhoneNumber":"111-222-4445",
-		   "personalPhoneNumber":"111-333-5557",
-		   "addressLine1":"1234 clark st",
-		   "addressLine2":"APT 116",
-		   "city":"cincinatti",
-		   "state":"OH",
-		   "country":"USA",
-		   "zipcode":"78297"
-		   
-	}
+		(with contact information provided in body of POST request ( in json format))
+		
+		{  
+		
+			   "name":"Brian Maher",
+			   "email":"brian@noname.org",
+			   "company":"companyD",
+			   "profileImage":"~/profile/brian/image",
+			   "birthDate":"2000-07-28",
+			   "workPhoneNumber":"111-222-4445",
+			   "personalPhoneNumber":"111-333-5557",
+			   "addressLine1":"1234 clark st",
+			   "addressLine2":"APT 116",
+			   "city":"cincinatti",
+			   "state":"OH",
+			   "country":"USA",
+			   "zipcode":"78297"
+			   
+		}
 
 
 6. Sample Data initialized at startup
