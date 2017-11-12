@@ -129,6 +129,7 @@ How to test the application
 	PUT http://<Your_IP_ADDRESS/localhost>:8585/api/v1/contact/1 
 	
 	{  
+	
 		   "name":"Brian Maher",
 		   "email":"brian@noname.org",
 		   "company":"companyD",
@@ -142,6 +143,7 @@ How to test the application
 		   "state":"OH",
 		   "country":"USA",
 		   "zipcode":"78297"
+		   
 	}
 
 
@@ -149,6 +151,7 @@ How to test the application
 
 
 	{
+	
 			"name": "John",
 			"email": "john@noname.org",
 			"company": "companyA",
@@ -162,9 +165,11 @@ How to test the application
 			"state": "IL",
 			"country": "USA",
 			"zipcode": "60607"
+			
 	},
 	
 	{
+	
 			"name": "Mike",
 			"email": "mike@noname.org",
 			"company": "companyB",
@@ -178,9 +183,11 @@ How to test the application
 			"state": "NY",
 			"country": "USA",
 			"zipcode": "29483"
+			
 	},
 	
 	{
+	
 			"name": "Brian",
 			"email": "brian@noname.org",
 			"company": "companyC",
@@ -194,9 +201,11 @@ How to test the application
 			"state": "OH",
 			"country": "USA",
 			"zipcode": "53749"
+			
 	},
 	
 	{
+	
 			"name": "Patrick",
 			"email": "patrick@noname.org",
 			"company": "companyD",
@@ -210,6 +219,7 @@ How to test the application
 			"state": "OH",
 			"country": "USA",
 			"zipcode": "53749"
+			
 	},
 	
 	{
