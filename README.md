@@ -49,18 +49,25 @@ How to test the application
  You can use curl on unix terminal to make REST calls for below urls. You can use any other rest client. 
  
  1. search by city or state
+ 
 	a) Valid requests
+	
 	GET http://localhost:8585/api/v1/contacts
+	
 	GET http://localhost:8585/api/v1/contacts?search=city:NYC
+	
 	GET http://localhost:8585/api/v1/contacts?search=state:NY
+	
 	GET http://localhost:8585/api/v1/contacts?search=state:OH
 	
 	b) Invalid requests, invalid values
 	
 	GET http://localhost:8585/api/v1/contacts?search=city:
+	
 	GET http://localhost:8585/api/v1/contacts?search=state:
 	
 	c) invalid parameter
+	
 	GET http://localhost:8686/api/v1/contacts?search=phonenumber:
 
 
