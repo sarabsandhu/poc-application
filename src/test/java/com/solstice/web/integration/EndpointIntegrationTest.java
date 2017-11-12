@@ -30,7 +30,7 @@ public class EndpointIntegrationTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void test() throws IOException{
+	public void testContactsNode() throws IOException{
 		
 		ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/contacts", String.class);
 		
@@ -39,7 +39,6 @@ public class EndpointIntegrationTest {
 		JsonNode responseJson = objectMapper.readTree(response.getBody());
 		
 		assertThat(responseJson.isMissingNode(), is(false));
-		assertThat(responseJson.toString(), equalTo("[]"));
 	}
 
 }
