@@ -6,7 +6,6 @@ package com.solstice.util.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mockito.internal.util.StringJoiner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,19 +53,19 @@ public class ContactValidator implements Validator<List<String>, Contact> {
 		Contact contact = (Contact) o;
 
 		if (!emailValidator.validate(contact.getEmail())) {
-			errorMessages.add(StringJoiner.join(" ",contact.getEmail()," is invalid. correct format is someone@noname.aaa"));
+			errorMessages.add(String.join(" ",contact.getEmail()," is invalid. correct format is someone@noname.aaa"));
 		}
 
 		if (!phoneValidator.validate(contact.getPersonalPhoneNumber())) {
-			errorMessages.add(StringJoiner.join(" ",contact.getPersonalPhoneNumber()," is invalid. correct format is ddd-ddd-dddd"));
+			errorMessages.add(String.join(" ",contact.getPersonalPhoneNumber()," is invalid. correct format is ddd-ddd-dddd"));
 		}
 
 		if (!phoneValidator.validate(contact.getWorkPhoneNumber())) {
-			errorMessages.add(StringJoiner.join(" ",contact.getWorkPhoneNumber()," is invalid. correct format is ddd-ddd-dddd"));
+			errorMessages.add(String.join(" ",contact.getWorkPhoneNumber()," is invalid. correct format is ddd-ddd-dddd"));
 		}
 
 		if (!dateValidator.validate(contact.getBirthDate())) {
-			errorMessages.add(StringJoiner.join(" ",contact.getBirthDate()," is invalid. correct format is yyyy-mm-dd"));
+			errorMessages.add(String.join(" ",contact.getBirthDate()," is invalid. correct format is yyyy-mm-dd"));
 		}
 
 		// you can do other validations here to make sure that Contact data being

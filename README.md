@@ -1,20 +1,20 @@
 # poc-application
 POC application
 
-How to run the app
+How to run the application
 ---------------------------------------------------------------------------------------------------------
 
 1. run on default port 8585
 
-	java -jar solstice-poc-application-1.0.0.jar
+	java -jar solstice-poc-application-1.0.0.jar --DB_URL=jdbc:h2:~/solsticepoc --DB_USERNAME=sa --DB_PASSWORD
 
 2. run on different port like 8686
 
-	java -jar solstice-poc-application-1.0.0.jar --server.port=8686
+	java -jar solstice-poc-application-1.0.0.jar  --DB_URL=jdbc:h2:~/solsticepoc --DB_USERNAME=sa --DB_PASSWORD --server.port=8686
 
-3. specify log file name to something different like solstice.log.
+3. run on different port like 8686 and specify log file name to something different like solstice.log.
 	
-	java -jar solstice-poc-application-1.0.0.jar --server.port=8686 --logging.file=solstice.log
+	java -jar solstice-poc-application-1.0.0.jar  --DB_URL=jdbc:h2:~/solsticepoc --DB_USERNAME=sa --DB_PASSWORD --server.port=8686 --logging.file=solstice.log
 
 
 

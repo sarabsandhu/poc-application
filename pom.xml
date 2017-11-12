@@ -17,11 +17,12 @@
 		<version>1.4.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<flyway.plugin.version>4.1.0</flyway.plugin.version>
 	</properties>
 
 	<dependencies>
@@ -41,12 +42,6 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>       
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,12 +65,7 @@
 	        <groupId>org.flywaydb</groupId>
 	        <artifactId>flyway-core</artifactId>
 	    </dependency>
-
-		<!-- testing dependencies -->
-	    <dependency>
-	    	<groupId>org.mockito</groupId>
-	    	<artifactId>mockito-core</artifactId>
-	    </dependency>
+	    
 	</dependencies>
 
 	<build>
@@ -83,17 +73,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>	
+			</plugin>
+			<!-- flyway plugin for cleaning up h2 schema versions-->	
 	        <plugin>
 	            <groupId>org.flywaydb</groupId>
 	            <artifactId>flyway-maven-plugin</artifactId>
-	            <version>4.1.0</version>
+	            <version>${flyway.plugin.version}</version>
+	            <!-- Make sure to define environment variables (H2_URL,H2_USERNAME,H2_PASSWORD,H2_SCHEMA before calling this goal -->
 	            <configuration>
-	                <url>jdbc:h2:~/solsticepoc</url>
-	                <user>sa</user>
-	                <password></password>
+	                <url>${env.H2_URL}</url>
+	                <user>${env.H2_USERNAME}</user>
+	                <password>${env.H2_PASSWORD}</password>
 	                <schemas>
-	                    <schema>PUBLIC</schema>
+	                    <schema>${env.H2_SCHEMA}</schema>
 	                </schemas>
 	            </configuration>
 	        </plugin>				

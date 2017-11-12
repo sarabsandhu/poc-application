@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.mockito.internal.util.StringJoiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -96,7 +95,7 @@ public class ContactService {
 				String searchAttributeValue = matcher.group(2);
 
 				if (searchAttributeValue == null || "".equalsIgnoreCase(searchAttributeValue.trim())) {
-					throw new ContactException(StringJoiner.join(" ","Invalid search value specified for",searchAttribute));
+					throw new ContactException(String.join(" ","Invalid search value specified for",searchAttribute));
 				}
 
 				if (CITY.equalsIgnoreCase(searchAttribute)) {
@@ -142,7 +141,7 @@ public class ContactService {
 			return contactRepository.saveAndFlush(contact);
 
 		} else {
-			throw new ContactNotFoundException(StringJoiner.join(" , ", errorList));
+			throw new ContactNotFoundException(String.join(" , ", errorList));
 		}
 	}
 	
@@ -150,12 +149,12 @@ public class ContactService {
 		
 		List<Contact> contactList = contactRepository.findByEmail(contact.getEmail());
 		if(!(contactList == null || contactList.isEmpty())) {
-			throw new DuplicateContactException(StringJoiner.join(" ","Contact with email",contact.getEmail(),"already exists"));
+			throw new DuplicateContactException(String.join(" ","Contact with email",contact.getEmail(),"already exists"));
 		}
 		
 		contactList = contactRepository.findByPersonalPhoneNumber(contact.getPersonalPhoneNumber());
 		if(!(contactList == null || contactList.isEmpty())) {
-			throw new DuplicateContactException(StringJoiner.join(" ","Contact with personal phone number",contact.getPersonalPhoneNumber(),"already exists"));
+			throw new DuplicateContactException(String.join(" ","Contact with personal phone number",contact.getPersonalPhoneNumber(),"already exists"));
 		}
 		
 		
@@ -204,7 +203,7 @@ public class ContactService {
 				 * 
 				 */
 				
-				throw new ContactException(StringJoiner.join(" ", "Multiple contcats found for give email/phone muber",
+				throw new ContactException(String.join(" ", "Multiple contcats found for give email/phone muber",
 						emailOrPhoneNumber));
 			}
 		}
@@ -228,7 +227,7 @@ public class ContactService {
 
 		if (!(errorList == null || errorList.isEmpty())) {
 			logger.error("Problem with provided contact data for update");
-			throw new ContactException(StringJoiner.join(" , ", errorList));
+			throw new ContactException(String.join(" , ", errorList));
 
 		} else {
 			
